@@ -176,15 +176,21 @@
                             if (err) {
                                 return next(err);
                             }
-                            winston.verbose("[LDAP] uid=" + master_config.user_query.replace('%username%', username))
+                            winston.verbose("[LDAP] uid=" + master_config.user_query.replaceAll('%username%', username))
+                            let attributes = [
+                                //these fields are mandatory
+                                'dn', 'sAMAccountName', 'sn', 'mail', 'uid',
+                                // optional fields. used to create the user id/fullname
+                                'givenName', 'displayName',
+                            ];
+                            if (master_config.attributes) {
+                                attributes = attributes.concat(master_config.attributes.split(','));
+                            };
                             var opt = {
-                                filter: master_config.user_query.replace('%username%', username),
+                                filter: master_config.user_query.replaceAll('%username%', username),
                                 sizeLimit: 1,
                                 scope: 'sub',
-                                attributes: ['dn', 'sAMAccountName', 'sn', 'mail', 'uid', //these fields are mandatory
-                                    // optional fields. used to create the user id/fullname
-                                    'givenName', 'displayName',
-                                ]
+                                attributes: attributes,
                             };
 
                             adminClient.search(master_config.base, opt, (err, res) => {
@@ -254,6 +260,10 @@
             if (profile[master_config.email_field]) {
                 email = profile[master_config.email_field];
             }
+            let ldapUid = profile.uid;
+            if (profile[master_config.email_field]) {
+                ldapUid = profile[master_config.uid_field];
+            }
             if (email.indexOf("@") === -1) {
                 if (master_config.email_suffix.indexOf("@") === -1) {
                     email = email + "@" + master_config.email_suffix
@@ -264,7 +274,7 @@
             winston.verbose("[LDAP] fullname: " + fullname)
             winston.verbose("[LDAP] username: " + username)
             winston.verbose("[LDAP] email: " + email)
-            nodebb_ldap.getUserByLdapUid(profile.uid, (err, dbUser) => {
+            nodebb_ldap.getUserByLdapUid(ldapUid, (err, dbUser) => {
                 if (err) {
                     return callback(err);
                 }
@@ -272,7 +282,7 @@
                     // user exists
                     // now we check the user groups
                     winston.verbose("[LDAP] user exists")
-                    return nodebb_ldap.postLogin(dbUser.uid, profile.uid, callback);
+                    return nodebb_ldap.postLogin(dbUser.uid, ldapUid, callback);
                 } else {
                     // New User
                     winston.verbose("[LDAP] user does not exists")
@@ -290,10 +300,10 @@
                             user.setUserField(uid, 'email:confirmed', 1);
                         }
                         user.setUserFields(uid, {
-                            'nodebbldap:uid:': profile.uid
+                            'nodebbldap:uid:': ldapUid
                         });
-                        db.setObjectField('ldapid:uid', profile.uid, uid)
-                        return nodebb_ldap.postLogin(uid, profile.uid, callback);
+                        db.setObjectField('ldapid:uid', ldapUid, uid)
+                        return nodebb_ldap.postLogin(uid, ldapUid, callback);
                     });
                 }
             });

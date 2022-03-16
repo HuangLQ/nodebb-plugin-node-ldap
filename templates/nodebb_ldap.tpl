@@ -27,7 +27,7 @@
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="base">Admin User DN</label>
+              <label class="col-sm-3 control-label" for="admin_user">Admin User DN</label>
               <div class="col-sm-9">
                 <input type="text" id="admin_user" required name="admin_user" title="User DN" class="form-control"
                        placeholder="cn=admin,dc=example,dc=org">
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="base">Password</label>
+              <label class="col-sm-3 control-label" for="password">Password</label>
               <div class="col-sm-9">
                 <input type="password" id="password" required name="password" title="Password" class="form-control"
                        placeholder="admin" autocomplete="new-password">
@@ -43,7 +43,7 @@
             </div>
 
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="base">User LDAP Query</label>
+              <label class="col-sm-3 control-label" for="user_query">User LDAP Query</label>
               <div class="col-sm-9">
                 <input type="text" id="user_query" required name="user_query" title="User LDAP Query"
                        class="form-control" placeholder="(&(|(objectclass=inetOrgPerson))(uid=%username%))">
@@ -56,25 +56,37 @@
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="dname">Surname Field</label>
+              <label class="col-sm-3 control-label" for="sname">Surname Field</label>
               <div class="col-sm-9">
                 <input type="text" id="sname" required name="sname" title="Surname Field" class="form-control" placeholder="sn">
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="dname">Email Field</label>
+              <label class="col-sm-3 control-label" for="email_field">Email Field</label>
               <div class="col-sm-9">
                 <input type="text" id="email_field" required name="email_field" title="Email field" class="form-control" placeholder="mail">
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="dname">Optional Email Suffix</label>
+              <label class="col-sm-3 control-label" for="uid_field">Email Field</label>
+              <div class="col-sm-9">
+                <input type="text" id="uid_field" required name="uid_field" title="UID field" class="form-control" placeholder="uid">
+              </div>
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+              <label class="col-sm-3 control-label" for="attributes">Optional Attributes</label>
+              <div class="col-sm-9">
+                <input type="text" id="attributes" name="attributes" title="Optional Attributes" class="form-control" placeholder="">
+              </div>
+            </div>
+            <div class="form-group col-md-12 col-sm-12">
+              <label class="col-sm-3 control-label" for="email_suffix">Optional Email Suffix</label>
               <div class="col-sm-9">
                 <input type="text" id="email_suffix" name="email_suffix" title="Optional Email Suffix" class="form-control" placeholder="@internal">
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="base">Groups LDAP Query</label>
+              <label class="col-sm-3 control-label" for="groups_query">Groups LDAP Query</label>
               <div class="col-sm-9">
                 <input type="text" id="groups_query" required name="groups_query" title="Groups LDAP Query"
                        class="form-control" placeholder="(&(|(objectclass=posixGroup)))">
