@@ -1,8 +1,8 @@
 {
-    "id": "nodebb-plugin-node-ldap-new",
+    "id": "nodebb-plugin-node-ldap-new2",
     "name": "Node LDAP",
     "description": "An LDAP plugin",
-	"url": "https://github.com/csturiale/nodebb-plugin-node-ldap",
+	"url": "https://github.com/HuangLQ/nodebb-plugin-node-ldap",
 	"library": "./index.js",
 	"hooks": [
 		{ "hook": "static:app.load", "method": "init" },

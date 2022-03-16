@@ -1,11 +1,11 @@
 {
-  "name": "nodebb-plugin-node-ldap-new",
+  "name": "nodebb-plugin-node-ldap-new2",
   "version": "1.0.3",
   "description": "NodeBB LDAP Login",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/csturiale/nodebb-plugin-node-ldap"
+    "url": "https://github.com/HuangLQ/nodebb-plugin-node-ldap"
   },
   "keywords": [
     "nodebb",
@@ -17,6 +17,10 @@
     "name": "csturiale"
   },
   "contributors": [
+    {
+      "name": "HuangLQ",
+      "url": "https://github.com/HuangLQ"
+    },
     {
       "name": "csturiale",
       "url": "https://github.com/csturiale"
@@ -34,7 +38,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "nbbpm": {
-    "compatibility": "~1.16.0 || ~1.17.0"
+    "compatibility": "~1.16.0 || ~1.17.0 || ~1.19.0"
   },
   "dependencies": {
     "async": "^3.2.0",
