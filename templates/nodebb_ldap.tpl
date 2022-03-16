@@ -68,7 +68,7 @@
               </div>
             </div>
             <div class="form-group col-md-12 col-sm-12">
-              <label class="col-sm-3 control-label" for="uid_field">Email Field</label>
+              <label class="col-sm-3 control-label" for="uid_field">UID Field</label>
               <div class="col-sm-9">
                 <input type="text" id="uid_field" required name="uid_field" title="UID field" class="form-control" placeholder="uid">
               </div>
